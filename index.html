@@ -6,214 +6,7 @@
     <meta name="theme-color" content="#0b2852">
     <meta name="description" content="Portal interno da Master para consulta e download de guias, manuais e documentação dos projetos de cobrança e BI.">
     <title>Portal de Documentação | Master Cobrança</title>
-    <style>
-        :root {
-            --primary: #1459a8;
-            --primary-dark: #0b2852;
-            --primary-soft: #eaf2fc;
-            --accent: #ffc928;
-            --bg: #f3f6fa;
-            --surface: #ffffff;
-            --text: #202b3c;
-            --muted: #66758a;
-            --border: #dce4ee;
-            --success: #18794e;
-            --shadow: 0 8px 26px rgba(18, 42, 75, .07);
-            --radius: 14px;
-        }
-
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
-        body {
-            margin: 0;
-            color: var(--text);
-            background: var(--bg);
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-        }
-        a { color: var(--primary); }
-        button, input { font: inherit; }
-        button:focus-visible, a:focus-visible, input:focus-visible {
-            outline: 3px solid rgba(255, 201, 40, .9);
-            outline-offset: 3px;
-        }
-
-        .site-header {
-            color: #fff;
-            background: linear-gradient(120deg, #091f43 0%, #0b3f80 62%, #1459a8 100%);
-            padding: 28px 22px 24px;
-            border-bottom: 4px solid var(--accent);
-        }
-        .header-inner { max-width: 1240px; margin: 0 auto; }
-        .brand-line {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-        .brand-mark {
-            display: grid;
-            place-items: center;
-            width: 43px;
-            height: 43px;
-            flex: 0 0 43px;
-            border-radius: 11px;
-            color: var(--primary-dark);
-            background: var(--accent);
-            font-weight: 900;
-            letter-spacing: -.06em;
-            font-size: 1.05rem;
-        }
-        .brand-name { font-size: .82rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-        .brand-subtitle { color: rgba(255,255,255,.72); font-size: .8rem; }
-        .site-header h1 { margin: 0; font-size: clamp(1.65rem, 3.5vw, 2.45rem); line-height: 1.2; letter-spacing: -.025em; }
-        .site-header .lead { max-width: 760px; margin: 11px 0 0; color: rgba(255,255,255,.83); font-size: 1.03rem; }
-
-        .top-nav-wrap { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
-        .top-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 12px 22px;
-        }
-        .tab-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            padding: 10px 16px;
-            border: 1px solid transparent;
-            border-radius: 9px;
-            background: transparent;
-            color: var(--muted);
-            font-weight: 700;
-            cursor: pointer;
-            transition: background .18s ease, color .18s ease, border-color .18s ease;
-        }
-        .tab-button:hover { background: #f2f6fb; color: var(--primary-dark); }
-        .tab-button[aria-selected="true"] { color: var(--primary-dark); background: var(--primary-soft); border-color: #d1e2f9; }
-        .tab-icon { font-size: 1.1rem; }
-
-        .page-shell { max-width: 1240px; margin: 28px auto 0; padding: 0 22px; min-height: 55vh; }
-        .page[hidden] { display: none !important; }
-        .page-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin: 0 0 20px; }
-        .eyebrow { margin: 0 0 4px; color: var(--primary); font-size: .77rem; letter-spacing: .1em; font-weight: 800; text-transform: uppercase; }
-        .page-heading h2 { color: var(--primary-dark); margin: 0; font-size: clamp(1.55rem, 3vw, 2rem); letter-spacing: -.025em; }
-        .page-heading p { color: var(--muted); margin: 7px 0 0; max-width: 760px; }
-        .count-pill { flex: 0 0 auto; padding: 7px 12px; border-radius: 999px; background: #e8eef6; color: #40546d; font-size: .83rem; font-weight: 700; }
-
-        .library-toolbar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 24px 0 18px;
-            padding: 14px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(18,42,75,.035);
-        }
-        .search-wrap { position: relative; flex: 1; min-width: 0; }
-        .search-symbol { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #78869a; pointer-events: none; }
-        #search-guides { display: block; width: 100%; padding: 11px 12px 11px 39px; border: 1px solid var(--border); border-radius: 8px; background: #fbfcfe; color: var(--text); }
-        #search-guides::placeholder { color: #8a96a7; }
-        .refresh-button { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: var(--primary-dark); font-weight: 700; white-space: nowrap; cursor: pointer; }
-        .refresh-button:hover { border-color: #9bbce6; background: #f5f9ff; }
-
-        .status-message { margin: 14px 0; padding: 15px 17px; border: 1px solid var(--border); border-radius: 10px; background: #fff; color: var(--muted); }
-        .status-message.error { border-color: #f0d1a3; background: #fff9ed; color: #704910; }
-        .status-message strong { color: var(--text); }
-        .status-message code { padding: 2px 5px; border-radius: 4px; background: #edf1f6; color: #33445a; }
-        .guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; margin: 18px 0 38px; }
-        .guide-card {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            padding: 20px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            background: var(--surface);
-            box-shadow: var(--shadow);
-            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-        }
-        .guide-card:hover { transform: translateY(-3px); border-color: #b9cfea; box-shadow: 0 12px 28px rgba(18,42,75,.11); }
-        .guide-card-top { display: flex; align-items: flex-start; gap: 13px; }
-        .pdf-icon { display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 56px; border-radius: 9px; background: #fff0ef; color: #b42318; font-size: .76rem; font-weight: 900; border: 1px solid #f6d0cd; }
-        .guide-title { overflow-wrap: anywhere; margin: 1px 0 5px; font-size: 1.02rem; line-height: 1.35; color: var(--primary-dark); }
-        .guide-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 6px; color: var(--muted); font-size: .78rem; }
-        .meta-tag { display: inline-block; padding: 3px 7px; border-radius: 5px; background: #f1f4f8; }
-        .guide-description { flex: 1; margin: 16px 0 18px; color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
-        .guide-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-        .action-link { display: inline-flex; justify-content: center; align-items: center; gap: 7px; min-height: 40px; padding: 9px 12px; border-radius: 8px; text-decoration: none; font-size: .86rem; font-weight: 800; }
-        .action-link.primary { background: var(--primary); color: #fff; }
-        .action-link.primary:hover { background: var(--primary-dark); }
-        .action-link.secondary { background: #f1f5fa; color: var(--primary-dark); border: 1px solid var(--border); }
-        .action-link.secondary:hover { background: #e6eef8; }
-        .library-note { display: flex; align-items: flex-start; gap: 11px; margin: 0 0 38px; padding: 16px 18px; border-left: 4px solid var(--accent); border-radius: 8px; background: #fff; color: var(--muted); font-size: .9rem; }
-        .library-note strong { color: var(--text); }
-
-        /* Documentação HTML */
-        .docs-layout { display: grid; grid-template-columns: 255px minmax(0, 1fr); gap: 22px; align-items: start; }
-        .docs-nav { position: sticky; top: 79px; padding: 20px 15px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
-        .docs-nav h3 { margin: 0 10px 12px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); color: var(--primary-dark); font-size: 1rem; }
-        .docs-nav ul { list-style: none; padding: 0; margin: 0; }
-        .docs-nav li { margin: 3px 0; }
-        .docs-nav a { display: block; padding: 9px 10px; border-radius: 7px; color: #3a485c; text-decoration: none; font-size: .9rem; font-weight: 600; transition: background .18s ease, color .18s ease; }
-        .docs-nav a:hover, .docs-nav a.active { background: var(--primary-soft); color: var(--primary); }
-        .docs-content { display: flex; min-width: 0; flex-direction: column; gap: 20px; padding-bottom: 34px; }
-        .doc-section { min-width: 0; padding: clamp(20px, 3vw, 32px); background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); scroll-margin-top: 92px; }
-        .doc-section h2 { margin: 0 0 10px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--primary-dark); font-size: clamp(1.2rem, 2.4vw, 1.55rem); line-height: 1.35; }
-        .section-desc { margin: 0 0 18px; color: var(--muted); }
-        .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
-        .info-card { min-width: 0; padding: 18px; border: 1px solid var(--border); border-radius: 10px; background: #fff; transition: border-color .18s ease, transform .18s ease; }
-        .info-card:hover { border-color: #b9cfea; transform: translateY(-2px); }
-        .info-card h4 { margin: 0 0 7px; color: var(--primary); font-size: 1.02rem; }
-        .info-card p { margin: 0; color: #4c5a6d; font-size: .93rem; }
-        .info-card ul { margin: 8px 0 0; padding-left: 20px; color: #4c5a6d; font-size: .92rem; }
-        .badge { display: inline-block; margin-bottom: 9px; padding: 4px 8px; border-radius: 5px; background: #fff1b8; color: #5f4700; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
-        .table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--border); border-radius: 9px; margin-top: 15px; }
-        table { width: 100%; min-width: 570px; border-collapse: collapse; }
-        th, td { padding: 12px 13px; border-bottom: 1px solid var(--border); text-align: left; font-size: .9rem; vertical-align: top; }
-        th { color: var(--primary-dark); background: #f0f4f9; font-weight: 800; }
-        tbody tr:last-child td { border-bottom: 0; }
-        tbody tr:hover { background: #fafcff; }
-        .contact-box { margin-top: 22px; padding: 19px; border-left: 4px solid var(--primary); border-radius: 8px; background: #f4f8fd; overflow-wrap: anywhere; }
-        .contact-box h4 { margin: 0 0 7px; color: var(--primary-dark); }
-        .contact-box p { margin: 4px 0; }
-        .contact-box a { font-weight: 650; }
-
-        footer { margin-top: 32px; padding: 24px 18px; border-top: 1px solid var(--border); background: #fff; color: var(--muted); text-align: center; font-size: .86rem; }
-        footer p { margin: 3px 0; }
-        .footer-sub { font-size: .78rem; }
-
-        @media (max-width: 1000px) {
-            .guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .docs-layout { grid-template-columns: 220px minmax(0, 1fr); gap: 15px; }
-        }
-        @media (max-width: 760px) {
-            .site-header { padding: 23px 17px 20px; }
-            .top-nav { padding: 10px 15px; }
-            .page-shell { padding: 0 15px; margin-top: 22px; }
-            .page-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
-            .library-toolbar { align-items: stretch; flex-direction: column; }
-            .refresh-button { width: 100%; }
-            .docs-layout { grid-template-columns: 1fr; }
-            .docs-nav { position: static; }
-            .docs-nav ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px; }
-            .grid-2 { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 520px) {
-            .guide-grid { grid-template-columns: 1fr; }
-            .tab-button { flex: 1 1 100%; justify-content: flex-start; }
-            .docs-nav ul { grid-template-columns: 1fr; }
-            .guide-actions { display: grid; grid-template-columns: 1fr 1fr; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="site-header">
@@ -242,186 +35,244 @@
     </div>
 
     <div class="page-shell">
-        <!-- ÁREA 1: DOWNLOADS DOS PDFs DA PASTA data -->
-        <main class="page" id="pagina-guias" aria-labelledby="titulo-guias">
-            <div class="page-heading">
-                <div>
-                    <p class="eyebrow">Biblioteca de arquivos</p>
-                    <h2 id="titulo-guias">Guias e manuais para download</h2>
-                    <p>Consulte os PDFs disponibilizados na pasta <code>data</code>. Use a busca para localizar um guia pelo nome.</p>
-                </div>
-                <div class="count-pill" id="guide-count" aria-live="polite">Carregando arquivos…</div>
-            </div>
+        <!-- Biblioteca de arquivos PDF -->
+        <main aria-labelledby="titulo-guias" class="page" id="pagina-guias">
+<div class="page-heading">
+<div>
+<p class="eyebrow">Biblioteca de arquivos</p>
+<h2 id="titulo-guias">Guias e manuais para download</h2>
+<p>Consulte os guias e manuais disponíveis. Use a busca para localizar um documento pelo nome.</p>
+</div>
+<div aria-live="polite" class="count-pill" id="guide-count">Carregando arquivos…</div>
+</div>
+<div class="library-toolbar">
+<label class="search-wrap">
+<span aria-hidden="true" class="search-symbol">⌕</span>
+<input aria-label="Buscar guia ou manual pelo nome" autocomplete="off" id="search-guides" placeholder="Buscar guia ou manual..." type="search"/>
+</label>
+<button class="refresh-button" id="refresh-guides" type="button">↻ Atualizar lista</button>
+</div>
+<div aria-live="polite" class="status-message" id="guide-status" role="status">Procurando os arquivos PDF…</div>
+<div aria-label="Lista de guias para download" class="guide-grid" id="guide-grid"></div>
 
-            <div class="library-toolbar">
-                <label class="search-wrap">
-                    <span class="search-symbol" aria-hidden="true">⌕</span>
-                    <input id="search-guides" type="search" placeholder="Buscar guia ou manual..." aria-label="Buscar guia ou manual pelo nome" autocomplete="off">
-                </label>
-                <button class="refresh-button" id="refresh-guides" type="button">↻ Atualizar lista</button>
-            </div>
+</main>
 
-            <div id="guide-status" class="status-message" role="status" aria-live="polite">Procurando os arquivos PDF…</div>
-            <div id="guide-grid" class="guide-grid" aria-label="Lista de guias para download"></div>
-
-            <div class="library-note">
-                <span aria-hidden="true">ℹ️</span>
-                <div><strong>Como publicar novos guias:</strong> adicione os arquivos PDF à pasta <code>data</code> do repositório e publique as alterações. Em repositórios públicos do GitHub Pages, a lista é identificada automaticamente. Evite incluir documentos com dados pessoais ou informações internas restritas sem a autorização e os controles de acesso adequados.</div>
-            </div>
-        </main>
-
-        <!-- ÁREA 2: DOCUMENTAÇÃO HTML JÁ EXISTENTE, MANTIDA SEPARADAMENTE -->
+        <!-- Documentação por projeto -->
         <main class="page" id="pagina-documentacao" aria-labelledby="titulo-documentacao" hidden>
             <div class="page-heading">
                 <div>
                     <p class="eyebrow">Base de conhecimento</p>
                     <h2 id="titulo-documentacao">Documentação online</h2>
-                    <p>Consulte diretamente no portal a visão geral dos projetos e processos da Master.</p>
+                    <p>Selecione um projeto para consultar sua documentação. O conteúdo do BI já está disponível; as demais páginas estão preparadas para preenchimento.</p>
                 </div>
             </div>
 
             <div class="docs-layout">
-                <nav class="docs-nav" aria-label="Módulos da documentação">
-                    <h3>Módulos do sistema</h3>
+                <nav class="docs-nav" aria-label="Projetos documentados">
+                    <h3>Projetos da Master</h3>
                     <ul>
-                        <li><a href="#modulo-bi" class="active">1. Dashboards &amp; BI</a></li>
-                        <li><a href="#modulo-calendario">2. Calendário Master</a></li>
-                        <li><a href="#modulo-regua">3. Régua de Cobrança</a></li>
-                        <li><a href="#modulo-canais">4. Canais &amp; Disparos</a></li>
-                        <li><a href="#modulo-admin">5. Administração &amp; Suporte</a></li>
+                        <li><button class="project-nav-button" type="button" data-project="bi" aria-controls="projeto-bi" aria-selected="true"><span class="project-nav-icon" aria-hidden="true">▥</span><span>BI &amp; Dashboards</span></button></li>
+                        <li><button class="project-nav-button" type="button" data-project="calendario" aria-controls="projeto-calendario" aria-selected="false"><span class="project-nav-icon" aria-hidden="true">▦</span><span>Calendário Master</span></button></li>
+                        <li><button class="project-nav-button" type="button" data-project="regua" aria-controls="projeto-regua" aria-selected="false"><span class="project-nav-icon" aria-hidden="true">↗</span><span>Régua de Cobrança</span></button></li>
+                        <li><button class="project-nav-button" type="button" data-project="disparos" aria-controls="projeto-disparos" aria-selected="false"><span class="project-nav-icon" aria-hidden="true">✉</span><span>E-mail &amp; WhatsApp</span></button></li>
+                        <li><button class="project-nav-button" type="button" data-project="assessorias" aria-controls="projeto-assessorias" aria-selected="false"><span class="project-nav-icon" aria-hidden="true">⇄</span><span>Bases das Assessorias</span></button></li>
+                        <li><button class="project-nav-button" type="button" data-project="sydle" aria-controls="projeto-sydle" aria-selected="false"><span class="project-nav-icon" aria-hidden="true">◷</span><span>Calendary · SYDLE One</span></button></li>
+                        <li><button class="project-nav-button" type="button" data-project="plataforma" aria-controls="projeto-plataforma" aria-selected="false"><span class="project-nav-icon" aria-hidden="true">▣</span><span>Plataforma de Projetos</span></button></li>
                     </ul>
+                    <p class="project-nav-caption">Selecione um item para abrir a página do projeto.</p>
                 </nav>
 
                 <div class="docs-content">
-                    <!-- MÓDULO 1: DASHBOARDS & BI -->
-                    <section class="doc-section" id="modulo-bi">
-                        <h2>Módulo 1: Visão Geral dos Dashboards (BI)</h2>
-                        <p class="section-desc">Central de comando do ecossistema de dados da Master, permitindo navegação rápida por seções operacionais e estratégicas.</p>
-                        <div class="grid-2">
-                            <article class="info-card">
-                                <span class="badge">Navegação</span>
-                                <h4>Tela Inicial / Menu de Acessos</h4>
-                                <p>Central com atalhos em cartões interativos para as seções de Régua, B2B, E-mail, WhatsApp, Assessorias e Calendário.</p>
-                            </article>
-                            <article class="info-card">
-                                <span class="badge">Métrica</span>
-                                <h4>Indicadores Chave (KPIs)</h4>
-                                <p>Acompanhamento de inadimplentes, Churn Monetário, somas de débitos e contratos ativos.</p>
-                            </article>
+                    <section class="project-page" id="projeto-bi" aria-labelledby="titulo-projeto-bi">
+                        <div class="project-page-heading">
+                            <div>
+                                <p class="eyebrow">Documentação do projeto</p>
+                                <h3 id="titulo-projeto-bi">BI &amp; Dashboards de Cobrança</h3>
+                                <p>Visão geral dos dashboards, rotinas de cobrança, canais de comunicação e controles operacionais descritos no material original.</p>
+                            </div>
+                            <span class="project-state">● Documentação disponível</span>
                         </div>
+                        <section class="doc-section" id="modulo-bi">
+<h2>Módulo 1: Visão Geral dos Dashboards (BI)</h2>
+<p class="section-desc">Central de comando do ecossistema de dados da Master, permitindo navegação rápida por seções operacionais e estratégicas.</p>
+<div class="grid-2">
+<article class="info-card">
+<span class="badge">Navegação</span>
+<h4>Tela Inicial / Menu de Acessos</h4>
+<p>Central com atalhos em cartões interativos para as seções de Régua, B2B, E-mail, WhatsApp, Assessorias e Calendário.</p>
+</article>
+<article class="info-card">
+<span class="badge">Métrica</span>
+<h4>Indicadores Chave (KPIs)</h4>
+<p>Acompanhamento de inadimplentes, Churn Monetário (ex.: R$ 73,4 milhões), somas de débitos e contratos ativos.</p>
+</article>
+</div>
+</section>
+<section class="doc-section" id="modulo-calendario">
+<h2>Módulo 2: Guia do Calendário Master</h2>
+<p class="section-desc">Ferramenta dedicada ao acompanhamento cronológico e operacional das rotinas de cobrança, faturamento e eventos recorrentes.</p>
+<div class="grid-2">
+<article class="info-card">
+<span class="badge">Perspectiva</span>
+<h4>Visão por Vencimento</h4>
+<p>Cronograma calculado a partir de cada data de vencimento e seus offsets na régua (ex.: PDF D-10, E-mail D+4 e Bloqueio D+15).</p>
+</article>
+<article class="info-card">
+<span class="badge">Perspectiva</span>
+<h4>Visão Operacional</h4>
+<p>Consolida as rotinas de execução do sistema, datas fixas (ex.: Corte no dia 12, Faturamento no dia 16 e 20) e disparos de exceção diários.</p>
+</article>
+<article class="info-card">
+<span class="badge">Ferramenta</span>
+<h4>Simulador de Cliente</h4>
+<p>Permite informar a data de vencimento de um cliente específico e consultar a linha do tempo cronológica de suas cobranças.</p>
+</article>
+<article class="info-card">
+<span class="badge">Exportação</span>
+<h4>Relatórios e Notificações</h4>
+<p>Suporte à exportação de dados em CSV e PDF, além de notificações nativas configuráveis via navegador.</p>
+</article>
+</div>
+</section>
+<section class="doc-section" id="modulo-regua">
+<h2>Módulo 3: Régua de Cobrança &amp; B2B</h2>
+<p class="section-desc">Regras de negócio aplicadas ao ciclo de vida do crédito e à recuperação de ativos.</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Faixa / Evento</th>
+<th>Regra de referência</th>
+<th>Descrição operacional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pré-vencimento</strong></td>
+<td>D - 10</td>
+<td>Envio preventivo de boleto / PDF.</td>
+</tr>
+<tr>
+<td><strong>Vencimento</strong></td>
+<td>D 0</td>
+<td>Disparo de fatura e abertura do ciclo.</td>
+</tr>
+<tr>
+<td><strong>Pós-vencimento</strong></td>
+<td>D + 15 / D + 75</td>
+<td>Bloqueios operacionais e corte definitivo de contrato.</td>
+</tr>
+<tr>
+<td><strong>Segmento B2B</strong></td>
+<td>Acima de R$ 5.000,00</td>
+<td>Painel especial para faturas corporativas e aging diferenciado.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="doc-section" id="modulo-canais">
+<h2>Módulo 4: Canais de Comunicação (E-mail &amp; WhatsApp)</h2>
+<p class="section-desc">Monitoramento de entregas, falhas e taxas de conversão por canal de disparo.</p>
+<div class="grid-2">
+<article class="info-card">
+<h4>Disparos de E-mail</h4>
+<ul>
+<li>Controle de envios com sucesso e falhas.</li>
+<li>Gráficos de conversão (Convertido vs. Não Convertido).</li>
+<li>Rotina diária de e-mails por exceção.</li>
+</ul>
+</article>
+<article class="info-card">
+<h4>Disparos de WhatsApp</h4>
+<ul>
+<li>Acompanhamento de interações em massa.</li>
+<li>Filtros cruzados por dia de disparo e vencimento.</li>
+<li>Curvas de tendência temporal de pagamentos.</li>
+</ul>
+</article>
+</div>
+</section>
+<section class="doc-section" id="modulo-admin">
+<h2>Módulo 5: Administração, Exceções &amp; Suporte</h2>
+<p class="section-desc">Mecanismos de controle interno e governança do sistema.</p>
+<div class="grid-2">
+<article class="info-card">
+<h4>Gestão de Exceções</h4>
+<p>Permite alterar uma ocorrência específica no calendário sem modificar a regra original da régua, exigindo justificativa do motivo.</p>
+</article>
+<article class="info-card">
+<h4>Auditoria e Histórico</h4>
+<p>Registro de alterações administrativas para assegurar rastreabilidade e controle operacional.</p>
+</article>
+</div>
+<div class="contact-box">
+<h4>Desenvolvedor / Responsável Técnico</h4>
+<p><strong>João Pedro Rodrigues</strong> · <a href="mailto:joao.silva@soumaster.com.br">joao.silva@soumaster.com.br</a></p>
+<p>Repositório: <a href="https://github.com/Jottynha" rel="noopener noreferrer" target="_blank">GitHub / Jottynha</a></p>
+</div>
+</section>
                     </section>
-
-                    <!-- MÓDULO 2: CALENDÁRIO MASTER -->
-                    <section class="doc-section" id="modulo-calendario">
-                        <h2>Módulo 2: Guia do Calendário Master</h2>
-                        <p class="section-desc">Ferramenta dedicada ao acompanhamento cronológico e operacional das rotinas de cobrança, faturamento e eventos recorrentes.</p>
-                        <div class="grid-2">
-                            <article class="info-card">
-                                <span class="badge">Perspectiva</span>
-                                <h4>Visão por Vencimento</h4>
-                                <p>Cronograma calculado a partir de cada data de vencimento e seus offsets na régua (ex.: PDF D-10, E-mail D+4 e Bloqueio D+15).</p>
-                            </article>
-                            <article class="info-card">
-                                <span class="badge">Perspectiva</span>
-                                <h4>Visão Operacional</h4>
-                                <p>Consolida as rotinas de execução do sistema, datas fixas (ex.: Corte no dia 12, Faturamento no dia 16 e 20) e disparos de exceção diários.</p>
-                            </article>
-                            <article class="info-card">
-                                <span class="badge">Ferramenta</span>
-                                <h4>Simulador de Cliente</h4>
-                                <p>Permite informar a data de vencimento de um cliente específico e consultar a linha do tempo cronológica de suas cobranças.</p>
-                            </article>
-                            <article class="info-card">
-                                <span class="badge">Exportação</span>
-                                <h4>Relatórios e Notificações</h4>
-                                <p>Suporte à exportação de dados em CSV e PDF, além de notificações nativas configuráveis via navegador.</p>
-                            </article>
-                        </div>
-                    </section>
-
-                    <!-- MÓDULO 3: RÉGUA DE COBRANÇA -->
-                    <section class="doc-section" id="modulo-regua">
-                        <h2>Módulo 3: Régua de Cobrança &amp; B2B</h2>
-                        <p class="section-desc">Regras de negócio aplicadas ao ciclo de vida do crédito e à recuperação de ativos.</p>
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Faixa / Evento</th>
-                                        <th>Regra de referência</th>
-                                        <th>Descrição operacional</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Pré-vencimento</strong></td>
-                                        <td>D - 10</td>
-                                        <td>Envio preventivo de boleto / PDF.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Vencimento</strong></td>
-                                        <td>D 0</td>
-                                        <td>Disparo de fatura e abertura do ciclo.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Pós-vencimento</strong></td>
-                                        <td>D + 15 / D + 75</td>
-                                        <td>Bloqueios operacionais e corte definitivo de contrato.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Segmento B2B</strong></td>
-                                        <td>Acima de R$ 5.000,00</td>
-                                        <td>Painel especial para faturas corporativas e aging diferenciado.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-
-                    <!-- MÓDULO 4: CANAIS & DISPAROS -->
-                    <section class="doc-section" id="modulo-canais">
-                        <h2>Módulo 4: Canais de Comunicação (E-mail &amp; WhatsApp)</h2>
-                        <p class="section-desc">Monitoramento de entregas, falhas e taxas de conversão por canal de disparo.</p>
-                        <div class="grid-2">
-                            <article class="info-card">
-                                <h4>Disparos de E-mail</h4>
-                                <ul>
-                                    <li>Controle de envios com sucesso e falhas.</li>
-                                    <li>Gráficos de conversão (Convertido vs. Não Convertido).</li>
-                                    <li>Rotina diária de e-mails por exceção.</li>
-                                </ul>
-                            </article>
-                            <article class="info-card">
-                                <h4>Disparos de WhatsApp</h4>
-                                <ul>
-                                    <li>Acompanhamento de interações em massa.</li>
-                                    <li>Filtros cruzados por dia de disparo e vencimento.</li>
-                                    <li>Curvas de tendência temporal de pagamentos.</li>
-                                </ul>
-                            </article>
-                        </div>
-                    </section>
-
-                    <!-- MÓDULO 5: ADMINISTRAÇÃO & SUPORTE -->
-                    <section class="doc-section" id="modulo-admin">
-                        <h2>Módulo 5: Administração, Exceções &amp; Suporte</h2>
-                        <p class="section-desc">Mecanismos de controle interno e governança do sistema.</p>
-                        <div class="grid-2">
-                            <article class="info-card">
-                                <h4>Gestão de Exceções</h4>
-                                <p>Permite alterar uma ocorrência específica no calendário sem modificar a regra original da régua, exigindo justificativa do motivo.</p>
-                            </article>
-                            <article class="info-card">
-                                <h4>Auditoria e Histórico</h4>
-                                <p>Registro de alterações administrativas para assegurar rastreabilidade e controle operacional.</p>
-                            </article>
-                        </div>
-                        <div class="contact-box">
-                            <h4>Desenvolvedor / Responsável Técnico</h4>
-                            <p><strong>João Pedro Rodrigues</strong> · <a href="mailto:joao.silva@soumaster.com.br">joao.silva@soumaster.com.br</a></p>
-                            <p>Repositório: <a href="https://github.com/Jottynha" target="_blank" rel="noopener noreferrer">GitHub / Jottynha</a></p>
-                        </div>
-                    </section>
+                    <section class="project-page" id="projeto-calendario" aria-labelledby="titulo-projeto-calendario" hidden>
+        <div class="project-page-heading">
+            <div><p class="eyebrow">Documentação do projeto</p><h3 id="titulo-projeto-calendario">Calendário Master</h3><p>Acompanhamento cronológico das rotinas de cobrança, faturamento e eventos recorrentes.</p></div>
+            <span class="project-state pending">Em preparação</span>
+        </div>
+        <div class="project-placeholder">
+            <div class="project-placeholder-icon" aria-hidden="true">▦</div>
+            <div><h4>Documentação em construção</h4><p>Esta página já está preparada para receber a finalidade do projeto, arquitetura, regras de negócio, orientações de uso, responsáveis e materiais de referência.</p></div>
+        </div>
+    </section>
+                    <section class="project-page" id="projeto-regua" aria-labelledby="titulo-projeto-regua" hidden>
+        <div class="project-page-heading">
+            <div><p class="eyebrow">Documentação do projeto</p><h3 id="titulo-projeto-regua">Régua de Cobrança</h3><p>Regras, eventos, faixas de atraso e procedimentos aplicados ao ciclo de cobrança.</p></div>
+            <span class="project-state pending">Em preparação</span>
+        </div>
+        <div class="project-placeholder">
+            <div class="project-placeholder-icon" aria-hidden="true">↗</div>
+            <div><h4>Documentação em construção</h4><p>Esta página já está preparada para receber a finalidade do projeto, arquitetura, regras de negócio, orientações de uso, responsáveis e materiais de referência.</p></div>
+        </div>
+    </section>
+                    <section class="project-page" id="projeto-disparos" aria-labelledby="titulo-projeto-disparos" hidden>
+        <div class="project-page-heading">
+            <div><p class="eyebrow">Documentação do projeto</p><h3 id="titulo-projeto-disparos">E-mail & WhatsApp</h3><p>Documentação dos fluxos de disparo, resultados, falhas e conversões por canal.</p></div>
+            <span class="project-state pending">Em preparação</span>
+        </div>
+        <div class="project-placeholder">
+            <div class="project-placeholder-icon" aria-hidden="true">✉</div>
+            <div><h4>Documentação em construção</h4><p>Esta página já está preparada para receber a finalidade do projeto, arquitetura, regras de negócio, orientações de uso, responsáveis e materiais de referência.</p></div>
+        </div>
+    </section>
+                    <section class="project-page" id="projeto-assessorias" aria-labelledby="titulo-projeto-assessorias" hidden>
+        <div class="project-page-heading">
+            <div><p class="eyebrow">Documentação do projeto</p><h3 id="titulo-projeto-assessorias">Bases das Assessorias</h3><p>Integrações, arquivos de retorno, históricos e controles das bases de assessorias.</p></div>
+            <span class="project-state pending">Em preparação</span>
+        </div>
+        <div class="project-placeholder">
+            <div class="project-placeholder-icon" aria-hidden="true">⇄</div>
+            <div><h4>Documentação em construção</h4><p>Esta página já está preparada para receber a finalidade do projeto, arquitetura, regras de negócio, orientações de uso, responsáveis e materiais de referência.</p></div>
+        </div>
+    </section>
+                    <section class="project-page" id="projeto-sydle" aria-labelledby="titulo-projeto-sydle" hidden>
+        <div class="project-page-heading">
+            <div><p class="eyebrow">Documentação do projeto</p><h3 id="titulo-projeto-sydle">Calendary · SYDLE One</h3><p>Evolução do calendário operacional no ambiente SYDLE One.</p></div>
+            <span class="project-state pending">Em preparação</span>
+        </div>
+        <div class="project-placeholder">
+            <div class="project-placeholder-icon" aria-hidden="true">◷</div>
+            <div><h4>Documentação em construção</h4><p>Esta página já está preparada para receber a finalidade do projeto, arquitetura, regras de negócio, orientações de uso, responsáveis e materiais de referência.</p></div>
+        </div>
+    </section>
+                    <section class="project-page" id="projeto-plataforma" aria-labelledby="titulo-projeto-plataforma" hidden>
+        <div class="project-page-heading">
+            <div><p class="eyebrow">Documentação do projeto</p><h3 id="titulo-projeto-plataforma">Plataforma Interna de Projetos</h3><p>Gestão e documentação dos projetos internos, etapas, resultados e histórico de alterações.</p></div>
+            <span class="project-state pending">Em preparação</span>
+        </div>
+        <div class="project-placeholder">
+            <div class="project-placeholder-icon" aria-hidden="true">▣</div>
+            <div><h4>Documentação em construção</h4><p>Esta página já está preparada para receber a finalidade do projeto, arquitetura, regras de negócio, orientações de uso, responsáveis e materiais de referência.</p></div>
+        </div>
+    </section>
                 </div>
             </div>
         </main>
@@ -432,266 +283,6 @@
         <p class="footer-sub">© 2026 · Biblioteca de arquivos e documentação online</p>
     </footer>
 
-    <script>
-        /*
-         * Configuração opcional para hospedagens que não sejam GitHub Pages.
-         * Em um site público do GitHub Pages, proprietário e repositório são
-         * identificados automaticamente pela URL.
-         */
-        const GITHUB_OWNER = ""; // Ex.: "Jottynha" (opcional)
-        const GITHUB_REPO = "";  // Ex.: "portal-documentacao" (opcional)
-        const DATA_DIR = "data/";
-
-        const pageButtons = [...document.querySelectorAll("[data-page]")];
-        const pages = {
-            guias: document.getElementById("pagina-guias"),
-            documentacao: document.getElementById("pagina-documentacao")
-        };
-        const guideGrid = document.getElementById("guide-grid");
-        const guideStatus = document.getElementById("guide-status");
-        const guideCount = document.getElementById("guide-count");
-        const searchInput = document.getElementById("search-guides");
-        let allGuides = [];
-
-        function setPage(pageName, updateHash = true) {
-            if (!pages[pageName]) pageName = "guias";
-            Object.entries(pages).forEach(([name, element]) => {
-                element.hidden = name !== pageName;
-            });
-            pageButtons.forEach(button => {
-                button.setAttribute("aria-selected", String(button.dataset.page === pageName));
-            });
-            if (updateHash) {
-                const nextHash = pageName === "documentacao" ? "#documentacao" : "#guias";
-                history.replaceState(null, "", nextHash);
-            }
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        pageButtons.forEach(button => {
-            button.addEventListener("click", () => setPage(button.dataset.page));
-        });
-
-        function inferGitHubRepository() {
-            if (GITHUB_OWNER.trim() && GITHUB_REPO.trim()) {
-                return { owner: GITHUB_OWNER.trim(), repo: GITHUB_REPO.trim() };
-            }
-
-            const hostname = window.location.hostname;
-            if (!hostname.endsWith(".github.io")) return null;
-
-            const owner = hostname.slice(0, -".github.io".length);
-            const pathParts = window.location.pathname.split("/").filter(Boolean);
-            const repo = pathParts.length ? pathParts[0] : `${owner}.github.io`;
-            if (!owner || !repo) return null;
-            return { owner, repo };
-        }
-
-        function getSiteFileUrl(fileName) {
-            const base = new URL(".", window.location.href);
-            return new URL(DATA_DIR + encodeURIComponent(fileName), base).href;
-        }
-
-        function formatFileSize(bytes) {
-            if (!Number.isFinite(bytes) || bytes < 0) return "PDF";
-            if (bytes < 1024) return `${bytes} B`;
-            if (bytes < 1024 * 1024) return `${(bytes / 1024).toLocaleString("pt-BR", { maximumFractionDigits: 0 })} KB`;
-            return `${(bytes / (1024 * 1024)).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} MB`;
-        }
-
-        function titleFromFilename(fileName) {
-            return fileName
-                .replace(/\.pdf$/i, "")
-                .replace(/[_-]+/g, " ")
-                .replace(/\s+/g, " ")
-                .trim();
-        }
-
-        function setStatus(message, isError = false) {
-            guideStatus.classList.toggle("error", isError);
-            guideStatus.textContent = message;
-            guideStatus.hidden = !message;
-        }
-
-        function renderGuides() {
-            const term = searchInput.value.trim().toLocaleLowerCase("pt-BR");
-            const filtered = allGuides.filter(guide => {
-                const haystack = `${guide.title} ${guide.fileName}`.toLocaleLowerCase("pt-BR");
-                return haystack.includes(term);
-            });
-
-            guideGrid.replaceChildren();
-            guideCount.textContent = `${filtered.length} ${filtered.length === 1 ? "guia" : "guias"}`;
-
-            if (!filtered.length) {
-                setStatus(allGuides.length
-                    ? "Nenhum guia corresponde à busca. Tente outro termo."
-                    : "Nenhum PDF foi encontrado na pasta data.");
-                return;
-            }
-
-            setStatus("");
-            const fragment = document.createDocumentFragment();
-            filtered.forEach(guide => {
-                const card = document.createElement("article");
-                card.className = "guide-card";
-
-                const top = document.createElement("div");
-                top.className = "guide-card-top";
-                const icon = document.createElement("div");
-                icon.className = "pdf-icon";
-                icon.setAttribute("aria-hidden", "true");
-                icon.textContent = "PDF";
-
-                const info = document.createElement("div");
-                info.style.minWidth = "0";
-                const title = document.createElement("h3");
-                title.className = "guide-title";
-                title.textContent = guide.title;
-                const meta = document.createElement("div");
-                meta.className = "guide-meta";
-                const tagType = document.createElement("span");
-                tagType.className = "meta-tag";
-                tagType.textContent = "Documento PDF";
-                meta.append(tagType);
-                if (Number.isFinite(guide.size)) {
-                    const tagSize = document.createElement("span");
-                    tagSize.className = "meta-tag";
-                    tagSize.textContent = formatFileSize(guide.size);
-                    meta.append(tagSize);
-                }
-                info.append(title, meta);
-                top.append(icon, info);
-
-                const description = document.createElement("p");
-                description.className = "guide-description";
-                description.textContent = guide.description || "Guia de referência disponível para consulta e download.";
-
-                const actions = document.createElement("div");
-                actions.className = "guide-actions";
-                const download = document.createElement("a");
-                download.className = "action-link primary";
-                download.href = guide.url;
-                download.setAttribute("download", guide.fileName);
-                download.textContent = "↓ Baixar PDF";
-                download.setAttribute("aria-label", `Baixar ${guide.title}`);
-
-                const open = document.createElement("a");
-                open.className = "action-link secondary";
-                open.href = guide.url;
-                open.target = "_blank";
-                open.rel = "noopener noreferrer";
-                open.textContent = "↗ Abrir";
-                open.setAttribute("aria-label", `Abrir ${guide.title} em uma nova aba`);
-
-                actions.append(download, open);
-                card.append(top, description, actions);
-                fragment.append(card);
-            });
-            guideGrid.append(fragment);
-        }
-
-        function normalizeManifestEntry(item) {
-            const fileName = typeof item === "string" ? item : (item.arquivo || item.file || item.nome || item.name || "");
-            if (!fileName || !/\.pdf$/i.test(fileName)) return null;
-            return {
-                fileName,
-                title: (typeof item === "object" && (item.titulo || item.title)) || titleFromFilename(fileName),
-                description: (typeof item === "object" && item.descricao) || "",
-                size: typeof item === "object" && Number.isFinite(item.tamanho) ? item.tamanho : undefined,
-                url: getSiteFileUrl(fileName)
-            };
-        }
-
-        async function loadFromManifest() {
-            const response = await fetch(`${DATA_DIR}guias.json`, { cache: "no-store" });
-            if (!response.ok) throw new Error("Manifesto data/guias.json não encontrado.");
-            const manifest = await response.json();
-            const entries = Array.isArray(manifest) ? manifest : manifest.guias;
-            if (!Array.isArray(entries)) throw new Error("O manifesto precisa conter uma lista de guias.");
-            return entries.map(normalizeManifestEntry).filter(Boolean);
-        }
-
-        async function loadGuides() {
-            const refreshButton = document.getElementById("refresh-guides");
-            refreshButton.disabled = true;
-            refreshButton.textContent = "Carregando…";
-            guideGrid.replaceChildren();
-            guideCount.textContent = "Carregando…";
-            setStatus("Procurando os arquivos PDF…");
-            allGuides = [];
-
-            try {
-                const repository = inferGitHubRepository();
-                if (!repository) throw new Error("Repositório GitHub não identificado automaticamente.");
-
-                const endpoint = `https://api.github.com/repos/${encodeURIComponent(repository.owner)}/${encodeURIComponent(repository.repo)}/contents/${DATA_DIR.replace(/\/$/, "")}`;
-                const response = await fetch(endpoint, {
-                    headers: { "Accept": "application/vnd.github+json" },
-                    cache: "no-store"
-                });
-                if (!response.ok) throw new Error(`A API do GitHub respondeu com status ${response.status}.`);
-
-                const files = await response.json();
-                if (!Array.isArray(files)) throw new Error("A resposta do repositório não contém uma lista de arquivos.");
-                allGuides = files
-                    .filter(item => item.type === "file" && /\.pdf$/i.test(item.name))
-                    .map(item => ({
-                        fileName: item.name,
-                        title: titleFromFilename(item.name),
-                        description: "Guia de referência disponível para consulta e download.",
-                        size: Number.isFinite(item.size) ? item.size : undefined,
-                        url: getSiteFileUrl(item.name)
-                    }))
-                    .sort((a, b) => a.title.localeCompare(b.title, "pt-BR", { sensitivity: "base" }));
-            } catch (apiError) {
-                try {
-                    allGuides = await loadFromManifest();
-                    allGuides.sort((a, b) => a.title.localeCompare(b.title, "pt-BR", { sensitivity: "base" }));
-                } catch (manifestError) {
-                    console.error("Não foi possível carregar os guias:", apiError, manifestError);
-                    guideCount.textContent = "Lista indisponível";
-                    guideGrid.replaceChildren();
-                    setStatus("Não foi possível listar os PDFs automaticamente. Se o site não estiver em um repositório público do GitHub Pages, configure GITHUB_OWNER e GITHUB_REPO no script ou crie o arquivo data/guias.json com a lista de PDFs. Os arquivos devem continuar dentro da pasta data.", true);
-                    refreshButton.disabled = false;
-                    refreshButton.textContent = "↻ Tentar novamente";
-                    return;
-                }
-            }
-
-            renderGuides();
-            refreshButton.disabled = false;
-            refreshButton.textContent = "↻ Atualizar lista";
-        }
-
-        searchInput.addEventListener("input", renderGuides);
-        document.getElementById("refresh-guides").addEventListener("click", loadGuides);
-
-        // Navegação entre módulos da documentação online.
-        const docLinks = [...document.querySelectorAll(".docs-nav a")];
-        docLinks.forEach(link => {
-            link.addEventListener("click", event => {
-                event.preventDefault();
-                const target = document.querySelector(link.getAttribute("href"));
-                if (!target) return;
-                docLinks.forEach(item => item.classList.toggle("active", item === link));
-                target.scrollIntoView({ behavior: "smooth", block: "start" });
-                history.replaceState(null, "", link.getAttribute("href"));
-            });
-        });
-
-        // Permite abrir diretamente a documentação com #documentacao.
-        if (window.location.hash === "#documentacao" || window.location.hash.startsWith("#modulo-")) {
-            setPage("documentacao", false);
-            const targetId = window.location.hash.startsWith("#modulo-") ? window.location.hash : "#modulo-bi";
-            requestAnimationFrame(() => {
-                const target = document.querySelector(targetId);
-                if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
-            });
-        } else {
-            setPage("guias", false);
-        }
-        loadGuides();
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
