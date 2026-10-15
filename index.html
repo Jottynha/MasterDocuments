@@ -92,126 +92,178 @@
                             </div>
                             <span class="project-state">● Documentação disponível</span>
                         </div>
-                        <section class="doc-section" id="modulo-bi">
-<h2>Módulo 1: Visão Geral dos Dashboards (BI)</h2>
-<p class="section-desc">Central de comando do ecossistema de dados da Master, permitindo navegação rápida por seções operacionais e estratégicas.</p>
-<div class="grid-2">
-<article class="info-card">
-<span class="badge">Navegação</span>
-<h4>Tela Inicial / Menu de Acessos</h4>
-<p>Central com atalhos em cartões interativos para as seções de Régua, B2B, E-mail, WhatsApp, Assessorias e Calendário.</p>
-</article>
-<article class="info-card">
-<span class="badge">Métrica</span>
-<h4>Indicadores Chave (KPIs)</h4>
-<p>Acompanhamento de inadimplentes, Churn Monetário (ex.: R$ 73,4 milhões), somas de débitos e contratos ativos.</p>
-</article>
-</div>
-</section>
-<section class="doc-section" id="modulo-calendario">
-<h2>Módulo 2: Guia do Calendário Master</h2>
-<p class="section-desc">Ferramenta dedicada ao acompanhamento cronológico e operacional das rotinas de cobrança, faturamento e eventos recorrentes.</p>
-<div class="grid-2">
-<article class="info-card">
-<span class="badge">Perspectiva</span>
-<h4>Visão por Vencimento</h4>
-<p>Cronograma calculado a partir de cada data de vencimento e seus offsets na régua (ex.: PDF D-10, E-mail D+4 e Bloqueio D+15).</p>
-</article>
-<article class="info-card">
-<span class="badge">Perspectiva</span>
-<h4>Visão Operacional</h4>
-<p>Consolida as rotinas de execução do sistema, datas fixas (ex.: Corte no dia 12, Faturamento no dia 16 e 20) e disparos de exceção diários.</p>
-</article>
-<article class="info-card">
-<span class="badge">Ferramenta</span>
-<h4>Simulador de Cliente</h4>
-<p>Permite informar a data de vencimento de um cliente específico e consultar a linha do tempo cronológica de suas cobranças.</p>
-</article>
-<article class="info-card">
-<span class="badge">Exportação</span>
-<h4>Relatórios e Notificações</h4>
-<p>Suporte à exportação de dados em CSV e PDF, além de notificações nativas configuráveis via navegador.</p>
-</article>
-</div>
-</section>
-<section class="doc-section" id="modulo-regua">
-<h2>Módulo 3: Régua de Cobrança &amp; B2B</h2>
-<p class="section-desc">Regras de negócio aplicadas ao ciclo de vida do crédito e à recuperação de ativos.</p>
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>Faixa / Evento</th>
-<th>Regra de referência</th>
-<th>Descrição operacional</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Pré-vencimento</strong></td>
-<td>D - 10</td>
-<td>Envio preventivo de boleto / PDF.</td>
-</tr>
-<tr>
-<td><strong>Vencimento</strong></td>
-<td>D 0</td>
-<td>Disparo de fatura e abertura do ciclo.</td>
-</tr>
-<tr>
-<td><strong>Pós-vencimento</strong></td>
-<td>D + 15 / D + 75</td>
-<td>Bloqueios operacionais e corte definitivo de contrato.</td>
-</tr>
-<tr>
-<td><strong>Segmento B2B</strong></td>
-<td>Acima de R$ 5.000,00</td>
-<td>Painel especial para faturas corporativas e aging diferenciado.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section class="doc-section" id="modulo-canais">
-<h2>Módulo 4: Canais de Comunicação (E-mail &amp; WhatsApp)</h2>
-<p class="section-desc">Monitoramento de entregas, falhas e taxas de conversão por canal de disparo.</p>
-<div class="grid-2">
-<article class="info-card">
-<h4>Disparos de E-mail</h4>
-<ul>
-<li>Controle de envios com sucesso e falhas.</li>
-<li>Gráficos de conversão (Convertido vs. Não Convertido).</li>
-<li>Rotina diária de e-mails por exceção.</li>
-</ul>
-</article>
-<article class="info-card">
-<h4>Disparos de WhatsApp</h4>
-<ul>
-<li>Acompanhamento de interações em massa.</li>
-<li>Filtros cruzados por dia de disparo e vencimento.</li>
-<li>Curvas de tendência temporal de pagamentos.</li>
-</ul>
-</article>
-</div>
-</section>
-<section class="doc-section" id="modulo-admin">
-<h2>Módulo 5: Administração, Exceções &amp; Suporte</h2>
-<p class="section-desc">Mecanismos de controle interno e governança do sistema.</p>
-<div class="grid-2">
-<article class="info-card">
-<h4>Gestão de Exceções</h4>
-<p>Permite alterar uma ocorrência específica no calendário sem modificar a regra original da régua, exigindo justificativa do motivo.</p>
-</article>
-<article class="info-card">
-<h4>Auditoria e Histórico</h4>
-<p>Registro de alterações administrativas para assegurar rastreabilidade e controle operacional.</p>
-</article>
-</div>
-<div class="contact-box">
-<h4>Desenvolvedor / Responsável Técnico</h4>
-<p><strong>João Pedro Rodrigues</strong> · <a href="mailto:joao.silva@soumaster.com.br">joao.silva@soumaster.com.br</a></p>
-<p>Repositório: <a href="https://github.com/Jottynha" rel="noopener noreferrer" target="_blank">GitHub / Jottynha</a></p>
-</div>
-</section>
+                        <section class="doc-section" id="bi-tela-inicial">
+                            <h2>1. Tela Inicial / Menu Principal</h2>
+                            <p class="section-desc">A tela inicial funciona como ponto central de navegação do relatório Power BI. Os cartões interativos direcionam o usuário para as áreas operacionais e analíticas, reduzindo o tempo necessário para localizar indicadores e informações de cobrança.</p>
+                            <h3>Como utilizar</h3>
+                            <p>Selecione o cartão correspondente ao assunto que deseja analisar. A navegação não representa, por si só, uma alteração nos dados: ela abre a página dedicada ao tema escolhido.</p>
+                            <div class="grid-2">
+                                <article class="info-card"><h4>Ir para Seção de Régua</h4><p>Abre a visão das ações executadas para os clientes, incluindo tipos de serviço, inadimplência e histórico relacionado à régua de cobrança.</p></article>
+                                <article class="info-card"><h4>Ir para Seção de B2B</h4><p>Direciona para a análise de cobranças corporativas, com foco no recorte de faturas de valor superior a R$ 5.000,00.</p></article>
+                                <article class="info-card"><h4>Ir para Seção de E-mail / WhatsApp</h4><p>Abre os indicadores de disparos, falhas, sucessos e conversões associadas aos pagamentos após as comunicações.</p></article>
+                                <article class="info-card"><h4>Ir para Seção das Assessorias</h4><p>Permite consultar a distribuição atual e histórica da carteira entre assessorias, incluindo débitos, contratos e movimentações.</p></article>
+                                <article class="info-card"><h4>Acessar Calendário</h4><p>Abre o calendário online usado para consultar cronogramas e eventos operacionais de cobrança.</p></article>
+                            </div>
+                            <p><strong>Boa prática:</strong> inicie a análise escolhendo a área de negócio adequada e, nas páginas seguintes, aplique filtros antes de comparar indicadores ou exportar resultados.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-regua-geral">
+                            <h2>2. Módulo de Régua / Visão Geral</h2>
+                            <p class="section-desc">Apresenta uma visão consolidada das ações de cobrança registradas para os clientes e permite relacionar a execução dos serviços à situação da carteira. É indicada para acompanhar o volume de ações, identificar contratos inadimplentes e avaliar a exposição financeira associada ao churn.</p>
+                            <h3>Filtros e navegação</h3>
+                            <ul>
+                                <li><strong>Data de Execução do Serviço:</strong> selecione o período em que as ações foram executadas. Os indicadores e visuais compatíveis com esse contexto serão recalculados para o intervalo selecionado.</li>
+                                <li><strong>Buscar Cliente:</strong> informe o nome ou identificador disponível para localizar rapidamente registros relacionados ao cliente.</li>
+                            </ul>
+                            <h3>Indicadores e visualizações</h3>
+                            <div class="grid-2">
+                                <article class="info-card"><h4>Contagem de Tipo de Serviço</h4><p>Distribui o volume de registros por categoria de serviço executado, permitindo observar a composição das ações da régua.</p></article>
+                                <article class="info-card"><h4>Inadimplentes</h4><p>Contabiliza os clientes ou contratos classificados como inadimplentes conforme a regra implementada no modelo. O valor de 1.469 é um exemplo ilustrativo e varia com os filtros ativos.</p></article>
+                                <article class="info-card"><h4>Churn Monetário</h4><p>Representa a exposição financeira associada aos contratos classificados na regra de churn. O exemplo de R$ 73.464.223,42 é ilustrativo e deve ser interpretado conforme o período e o contexto filtrados.</p></article>
+                                <article class="info-card"><h4>Gráfico de rosca por Tipo de Serviço</h4><p>Compara a participação de Inadimplência, Liberação e Reconexão no conjunto de registros filtrado.</p></article>
+                                <article class="info-card"><h4>Quantidade por Data de Instalação</h4><p>Gráfico de linha para observar a distribuição dos clientes segundo a data de instalação e identificar concentrações ou tendências.</p></article>
+                                <article class="info-card"><h4>Quantidade por Ano de Nascimento</h4><p>Gráfico de linha que apresenta a distribuição de clientes por ano de nascimento, conforme os dados cadastrais disponíveis.</p></article>
+                            </div>
+                            <p>A tabela analítica reúne atributos como Cidade, Regional, Cliente, Contrato, Situação, Data de Instalação, Descrição do Serviço e Documento. Utilize-a para validar os totais dos gráficos e localizar os registros que compõem os indicadores.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-detalhe-cliente">
+                            <h2>3. Módulo de Detalhe por Cliente / Nome</h2>
+                            <p class="section-desc">Permite aprofundar a análise de um cliente específico, cruzando informações de vencimento, pagamentos, tipo de documento e histórico de serviços. Esta página é indicada para investigação individual e conferência de eventos da régua.</p>
+                            <h3>Como usar os filtros</h3>
+                            <ul>
+                                <li><strong>Mês de Vencimento e Dia de Vencimento:</strong> restringem a análise às faturas com o período de vencimento escolhido.</li>
+                                <li><strong>Data do Pagamento:</strong> utilize o controle deslizante para limitar o intervalo de datas de pagamento contemplado pelos dados.</li>
+                                <li><strong>Tipo de Documento — CNPJ / CPF:</strong> alterna o recorte entre documentos empresariais e pessoais, conforme a configuração do relatório.</li>
+                                <li><strong>Nome:</strong> selecione o cliente desejado; por exemplo, Cinthia Ferreira de Souza. O exemplo é apenas demonstrativo.</li>
+                            </ul>
+                            <h3>Leitura dos resultados</h3>
+                            <p>O gráfico de rosca “Quantidade de Clientes por Último Tipo de Serviço realizado” mostra a distribuição por último serviço identificado no modelo. A tabela apresenta o histórico de contratos e pagamentos do cliente selecionado, apoiando a conferência de status, vencimentos e eventos de cobrança.</p>
+                            <p>Antes de concluir que um serviço originou ou impediu um pagamento, confirme a sequência temporal entre a execução da ação, o vencimento e a data de pagamento. A associação exibida pelo relatório deve ser interpretada como evidência analítica, não necessariamente como causalidade.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-b2b-cobranca">
+                            <h2>4. Módulo B2B / Cobrança Corporativa</h2>
+                            <p class="section-desc">Concentra a análise da carteira corporativa, com ênfase em faturas de maior valor, contratos em atraso e valores ainda a vencer. Apoia a priorização de cobranças e o monitoramento da exposição financeira B2B.</p>
+                            <h3>Filtros</h3>
+                            <ul>
+                                <li><strong>Valor da Fatura:</strong> o slider limita a análise por faixa de valor. No exemplo da tela, o intervalo vai de R$ 5.000,00 a R$ 131.040,00.</li>
+                                <li><strong>CNPJ / CPF:</strong> seleciona o tipo de documento. Para uma leitura corporativa, confirme se o recorte está direcionado a CNPJ.</li>
+                            </ul>
+                            <h3>Indicadores principais</h3>
+                            <div class="grid-2">
+                                <article class="info-card"><h4>Clientes B2B — 65</h4><p>Exemplo de quantidade de clientes no recorte B2B atual; o número varia conforme filtros e atualização da base.</p></article>
+                                <article class="info-card"><h4>Clientes B2B em Atraso — 24</h4><p>Exemplo da quantidade de clientes com faturas classificadas como vencidas no contexto selecionado.</p></article>
+                                <article class="info-card"><h4>Valor Faturas de B2B em Atraso — R$ 889.067,30</h4><p>Exemplo do valor financeiro agregado das faturas B2B em atraso.</p></article>
+                                <article class="info-card"><h4>Valor Faturas de B2B a Vencer — R$ 559.261,37</h4><p>Exemplo do valor agregado de faturas que ainda não venceram no recorte aplicado.</p></article>
+                            </div>
+                            <p>O gráfico “Contagem de Contratos por Aging” distribui os contratos em faixas de vencimento, como A vencer, 16 a 30 dias e Acima de 120 dias, além das demais faixas disponíveis no relatório. A tabela analítica permite identificar os contratos B2B que compõem os totais e apoiar a definição de prioridades de cobrança.</p>
+                            <p><strong>Nota de interpretação:</strong> os números apresentados nesta documentação são referências fornecidas para descrever a tela, não metas nem valores garantidos. Utilize sempre os valores atualizados no Power BI.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-b2b-recuperacao">
+                            <h2>5. Módulo de Recuperação B2B / Pagamentos</h2>
+                            <p class="section-desc">Acompanha os pagamentos recuperados na carteira B2B e permite observar como os contratos pagos se distribuem por faixa de aging de recuperação. A página apoia a avaliação dos resultados de cobrança e a conferência financeira dos valores recuperados.</p>
+                            <h3>Filtros e visualizações</h3>
+                            <ul>
+                                <li><strong>Slider:</strong> ajuste a faixa de valores ou o intervalo previsto no controle para restringir a análise ao conjunto desejado.</li>
+                                <li><strong>Data de Pagamento:</strong> selecione o período em que os pagamentos foram registrados para analisar a recuperação dentro de uma janela temporal.</li>
+                            </ul>
+                            <p>O gráfico de rosca “Contagem de ID Contrato por Aging Recuperação” agrupa os contratos conforme as categorias existentes, incluindo Em branco, 01 a 15 dias, A vencer e Vencendo hoje. A categoria “Em branco” indica que o campo de aging não está preenchido ou não se enquadrou em uma classificação; deve ser investigada antes de ser interpretada como uma faixa de atraso.</p>
+                            <p>A tabela de pagamentos lista os registros de recuperação B2B e inclui a soma do valor da fatura. Para analisar o desempenho, compare o volume de contratos recuperados com o montante financeiro pago no mesmo período e confirme a regra de atribuição dos pagamentos quando houver múltiplas ações de cobrança.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-email-disparos">
+                            <h2>6. Módulo de E-mails / Disparos</h2>
+                            <p class="section-desc">Monitora o resultado dos disparos de e-mail utilizados na comunicação de cobrança, distinguindo falhas de envio, entregas bem-sucedidas e conversões associadas a pagamentos.</p>
+                            <h3>Filtros</h3>
+                            <ul>
+                                <li><strong>Dia de Disparo:</strong> selecione uma data ou intervalo para analisar o volume e o resultado das comunicações enviadas nesse período.</li>
+                                <li><strong>Régua:</strong> escolha a etapa ou o tipo de ação da régua relacionado ao disparo, quando disponível.</li>
+                            </ul>
+                            <h3>Indicadores e leitura analítica</h3>
+                            <div class="grid-2">
+                                <article class="info-card"><h4>Disparos Falha — 3.724</h4><p>Exemplo do total de registros de disparo classificados como falha. Use o detalhe disponível na base para investigar motivos e qualidade dos endereços.</p></article>
+                                <article class="info-card"><h4>Disparos Sucesso — 9.552</h4><p>Exemplo do total de disparos classificados como sucesso, conforme o retorno da plataforma de envio.</p></article>
+                            </div>
+                            <p>O gráfico de rosca “Disparos Sucesso por Conversão” separa os envios entre Convertido e Não Convertido conforme a regra de conversão configurada no modelo. O gráfico temporal “Disparos corretos por Data de disparo” permite comparar o volume de envios corretos ao longo do tempo e identificar oscilações ou períodos atípicos.</p>
+                            <p>Conversão deve ser interpretada de acordo com a regra técnica adotada no relatório — por exemplo, pagamento ocorrido após o disparo dentro de uma janela definida. Um disparo bem-sucedido não significa necessariamente que o cliente leu a mensagem ou que o pagamento foi causado pelo e-mail.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-whatsapp-disparos">
+                            <h2>7. Módulo de WhatsApp / Disparos</h2>
+                            <p class="section-desc">Apresenta o volume de comunicações de cobrança via WhatsApp e sua relação analítica com os pagamentos. Permite monitorar tendências por data de envio e por vencimento das faturas.</p>
+                            <h3>Filtros</h3>
+                            <ul>
+                                <li><strong>Dia de Disparo:</strong> limita a análise à data ou ao período em que as mensagens foram enviadas.</li>
+                                <li><strong>Data de Vencimento:</strong> permite cruzar o envio com o vencimento da fatura, facilitando a análise por etapa do ciclo de cobrança.</li>
+                            </ul>
+                            <p>O KPI “Disparos WhatsApp” apresenta o total de registros de disparo no contexto filtrado; 22.499 é o valor de referência informado para a tela, não um número fixo.</p>
+                            <p>O gráfico de rosca demonstra a distribuição de conversão no WhatsApp segundo a regra do modelo. O gráfico de área ou linha temporal de disparos corretos por data permite observar a evolução do volume ao longo do período e comparar dias com maior ou menor atividade.</p>
+                            <p>Ao comparar períodos, mantenha consistentes os filtros de data de disparo e vencimento. Para avaliar conversão, confirme qual evento é considerado pagamento e qual janela temporal relaciona o pagamento ao disparo.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-assessorias-atual">
+                            <h2>8. Módulo de Assessorias — Posição Atual</h2>
+                            <p class="section-desc">Apresenta a distribuição atual da carteira entre as assessorias de cobrança, permitindo avaliar volume de contratos, exposição financeira e concentração geográfica dos clientes.</p>
+                            <h3>Filtros</h3>
+                            <ul>
+                                <li><strong>Maior Vencimento:</strong> restringe a carteira conforme a data de vencimento mais alta ou o critério de vencimento configurado no relatório.</li>
+                                <li><strong>Situação Contrato:</strong> seleciona os contratos por situação, conforme as categorias disponíveis.</li>
+                                <li><strong>Cidade:</strong> limita a visão a uma localidade específica para análise territorial.</li>
+                            </ul>
+                            <h3>Indicadores e visualizações</h3>
+                            <div class="grid-2">
+                                <article class="info-card"><h4>Soma Débito — R$ 63.716.105,40</h4><p>Exemplo do montante de débito agregado na carteira filtrada.</p></article>
+                                <article class="info-card"><h4>Contratos — 400.546</h4><p>Exemplo da quantidade de contratos no recorte. Verifique a definição da medida para saber se representa contratos distintos ou registros da base.</p></article>
+                            </div>
+                            <p>O gráfico de rosca “Quantidade de Cliente por Assessoria” compara a distribuição entre Agius, Cobcom, Open Credit, Digicob e Recupere. O mapa geográfico apresenta as cidades e a concentração territorial dos registros, auxiliando a identificar onde a carteira está distribuída.</p>
+                            <p>Use os filtros individualmente para comparar a carteira entre localidades e situações contratuais. Ao analisar a participação das assessorias, mantenha o mesmo recorte de período e situação para evitar comparações não equivalentes.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-assessorias-historica">
+                            <h2>9. Módulo de Assessorias — Posição Histórica</h2>
+                            <p class="section-desc">Permite consultar fotografias históricas da carteira atribuída às assessorias em uma data de referência. É útil para reconstruir a distribuição de contratos e débitos e avaliar alterações de carteira ao longo do tempo.</p>
+                            <h3>Filtros</h3>
+                            <ul>
+                                <li><strong>Cidade:</strong> restringe a análise a uma localidade.</li>
+                                <li><strong>Data_Referencia_Dia:</strong> seleciona a data da fotografia histórica a ser consultada. Esse filtro é essencial para comparar períodos corretamente.</li>
+                                <li><strong>Maior Vencimento e Situação Contrato:</strong> refinam o recorte conforme o vencimento e a situação do contrato.</li>
+                            </ul>
+                            <h3>Indicadores e visualizações</h3>
+                            <div class="grid-2">
+                                <article class="info-card"><h4>Soma dos Débitos — R$ 50.001.952,28</h4><p>Exemplo do total financeiro registrado na fotografia histórica selecionada.</p></article>
+                                <article class="info-card"><h4>Total Contratos — 333.392</h4><p>Exemplo da quantidade de contratos no recorte histórico. O resultado depende da data de referência e dos demais filtros.</p></article>
+                            </div>
+                            <p>O gráfico de rosca apresenta a distribuição histórica por assessoria. A tabela analítica detalha contratos ativos ou cancelados e pode incluir observações relevantes para compreender o estado do registro na data selecionada.</p>
+                            <p>Para medir a evolução, compare duas datas de referência usando os mesmos filtros de cidade, vencimento e situação. Diferenças entre posições podem refletir entradas, saídas, retornos, mudanças de status ou atualizações de base; consulte a tabela de movimentações para apoiar a interpretação.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-movimentacoes">
+                            <h2>10. Módulo de Movimentações</h2>
+                            <p class="section-desc">Registra e analisa movimentações de carteira entre assessorias, apoiando a auditoria de entradas, saídas e retornos. A tela permite acompanhar o histórico de movimentações por pessoa, assessoria e data.</p>
+                            <h3>Filtros</h3>
+                            <ul>
+                                <li><strong>Nome:</strong> seleciona o cliente ou registro de pessoa a ser investigado.</li>
+                                <li><strong>Assessoria:</strong> seletores laterais restringem a análise à assessoria de origem, destino ou à dimensão configurada no relatório.</li>
+                                <li><strong>Ano, Mês e Dia:</strong> filtram as movimentações por período e permitem detalhar um evento específico.</li>
+                            </ul>
+                            <h3>Visualizações e auditoria</h3>
+                            <p>O gráfico de rosca “Quantidade de Movimento por Tipo de Movimento” distribui os registros entre Entrada, Saída e Retorno. O gráfico de linha “Movimentos por Data” demonstra a frequência temporal das alterações e pode ajudar a identificar picos de movimentação.</p>
+                            <p>A tabela de auditoria deve ser utilizada para conferir os registros individuais, as datas e as informações de assessoria disponíveis. Ao validar uma transferência, verifique se a saída e a entrada correspondentes estão registradas e se a data de referência está coerente.</p>
+                            <p><strong>Recomendação de controle:</strong> antes de concluir a análise de uma movimentação, confira o cliente, o tipo de movimento, a assessoria e a data. O gráfico apresenta tendências agregadas; a tabela é a referência para investigar ocorrências específicas.</p>
+                        </section>
+
+                        <section class="doc-section" id="bi-glossario-boas-praticas">
+                            <h2>Orientações gerais de leitura e interpretação</h2>
+                            <div class="grid-2">
+                                <article class="info-card"><h4>Filtros cruzados</h4><p>Os filtros podem afetar simultaneamente cartões, gráficos e tabelas, conforme as interações configuradas no Power BI. Se um indicador mudar inesperadamente, revise os filtros ativos e limpe seleções que não façam parte da análise.</p></article>
+                                <article class="info-card"><h4>Valores de referência</h4><p>Os números citados neste guia são exemplos fornecidos para identificar os indicadores nas telas. Não representam valores fixos, metas ou garantias; o relatório pode apresentar resultados diferentes conforme a atualização e os filtros.</p></article>
+                                <article class="info-card"><h4>Contagem de clientes e contratos</h4><p>Cliente, contrato, título, disparo e movimentação são unidades de análise diferentes. Antes de comparar medidas, confira o que cada KPI conta e se utiliza registros ou identificadores distintos.</p></article>
+                                <article class="info-card"><h4>Aging e recuperação</h4><p>As faixas de aging representam categorias temporais definidas pelo modelo. Para interpretar um resultado, confirme se a faixa está relacionada ao vencimento original, ao atraso no momento da análise ou à recuperação registrada.</p></article>
+                            </div>
+                            <p>Este guia descreve a finalidade e a utilização funcional das telas com base nas informações fornecidas. Fórmulas exatas de medidas, regras de relacionamento e critérios de classificação devem ser confirmados no modelo semântico do Power BI quando for necessária uma auditoria técnica detalhada.</p>
+                        </section>
                     </section>
                     <section class="project-page" id="projeto-calendario" aria-labelledby="titulo-projeto-calendario" hidden>
         <div class="project-page-heading">
